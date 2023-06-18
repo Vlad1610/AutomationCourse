@@ -14,27 +14,32 @@ function readInput() {
     if((usernameText.length > 14) || (usernameText.length < 4)) {
         alert("The username must be between 4 and 14 characters ");
     }
-    //passsword must be longer than 8 characters and must contain at least one uppercase and one lowercase
+    //passsword must be longer than 8 characters and must contain at least one uppercase, one letter and one number
     if(passwordText.length < 8) {
         alert("The password must be at least 8 characters")
         document.getElementById("pass").style.color="red";
     } else {
         var containsUppercase = false;
         var containsLetters = false;
+        var containsNumber = false;
         var character = ' ';
         for(i = 0; i < passwordText.length; i++) {
             character = passwordText.charAt(i);
             console.log(character);
-            if(character == character.toUpperCase()) {
+            if((character == character.toUpperCase()) && isNaN(character)) {
                 containsUppercase = true;
             } else if((character >= 'A' && character <= 'Z') || (character >= 'a' && character <= 'z')) {
                 containsLetters = true;
+            } else if(!isNaN(character)) {
+                containsNumber = true;
             }
         }
         if(containsUppercase == false) {
             alert("The password must contain at least one uppercase letter");
         } else if(containsLetters == false) {
             alert("The password must contain at least one letter");
+        } else if(containsNumber == false) {
+            alert("The password must contain at least one number");
         }
     }
     //Repeat password should be the same as the password itself
@@ -49,8 +54,8 @@ function readInput() {
     if(emailText.length == 0) {
         alert("Email field can not be empty")
     }
+    var containsAt = false;
     for(x = 0; x < emailText.length; x++) {
-        var containsAt = false;
         characterAt = emailText.charAt(x);
         if(characterAt == '@') {
             containsAt = true;

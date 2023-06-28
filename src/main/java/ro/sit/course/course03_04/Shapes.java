@@ -1,4 +1,4 @@
-package ro.sit.course.course03;
+package ro.sit.course.course03_04;
 
 public class Shapes {
 

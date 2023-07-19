@@ -1,4 +1,4 @@
-package ro.sit.course.course06;
+package ro.sit.course.course06_07;
 import org.junit.*;
 public class TestClass {
     @Test

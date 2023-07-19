@@ -1,4 +1,4 @@
-package ro.sit.course.course06;
+package ro.sit.course.course06_07;
 
 public class ExceptionsChecked {
     public static void main(String[] args) throws MyCustomException {

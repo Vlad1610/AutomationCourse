@@ -1,8 +1,8 @@
-package ro.sit.course.course06;
+package ro.sit.course.course06_07;
 
 public class Calculator {
 
-        double compute(double firstParam, double secondParam, String operator)
+         public double compute(double firstParam, double secondParam, String operator)
                 throws IllegalArgumentException {
             double result;
             switch (operator) {
@@ -23,7 +23,11 @@ public class Calculator {
                     }
                     break;
                 case "SQRT":
-                    result = Math.sqrt(firstParam);
+                    if (firstParam < 0) {
+                        throw new IllegalArgumentException("SQRT does not accept NEGATIVE numbers");
+                    } else {
+                        result = Math.sqrt(firstParam);
+                    }
                     break;
                 default: {
                     throw new IllegalArgumentException("UNSUPPORTED OPERATOR: " + operator);

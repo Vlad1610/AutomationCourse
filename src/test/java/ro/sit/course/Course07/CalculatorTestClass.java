@@ -79,6 +79,7 @@ public class CalculatorTestClass {
         Assert.assertEquals(10, result, 0);
     }
 
+    // Homeowork Junits - 2 tests for each operation
     @Test()
     public void testAddingTwoNegativeNumbers() {
         result = calculator.compute(-5, -127, "+");

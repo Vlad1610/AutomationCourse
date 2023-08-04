@@ -8,7 +8,7 @@
             </run>
         </groups>
         <classes>
-            <class name="ro.sit.course.Course07.TestActivity"/>
+            <class name="OldTests.TestActivity"/>
         </classes>
     </test> <!-- TestAutomationProject -->
 </suite> <!-- Default Suite -->

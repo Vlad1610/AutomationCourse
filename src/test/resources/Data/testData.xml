@@ -1,0 +1,8 @@
+<loginModel>
+    <account>
+        <username/>
+        <password>pass1</password>
+    </account>
+    <userError>Please enter your username</userError>
+    <passwordError/>
+</loginModel>

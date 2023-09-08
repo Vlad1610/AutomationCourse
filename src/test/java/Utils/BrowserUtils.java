@@ -3,7 +3,9 @@ package Utils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class BrowserUtils {
@@ -13,8 +15,10 @@ public class BrowserUtils {
         switch (browser.toLowerCase()) {
             case ("chrome"): {
                 WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                driver.manage().window().maximize();
+                ChromeOptions chromeOptions = getChromeOptions();
+                driver = new ChromeDriver(chromeOptions);
+                // replaced by chrome options version
+//                driver.manage().window().maximize();
                 return driver;
             }
             case ("firefox"): {
@@ -25,6 +29,7 @@ public class BrowserUtils {
             }
             case ("edge"): {
                 WebDriverManager.edgedriver().setup();
+//                driver = new EdgeDriver(getEdgeOptions());
                 driver = new EdgeDriver();
                 driver.manage().window().maximize();
                 return driver;
@@ -34,5 +39,19 @@ public class BrowserUtils {
                 return null;
             }
         }
+    }
+
+    private static EdgeOptions getEdgeOptions() {
+        EdgeOptions edgeOptions = new EdgeOptions();
+        edgeOptions.setCapability("--start-maximized", true);
+        return edgeOptions;
+    }
+
+    private static ChromeOptions getChromeOptions() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("start-maximized");
+        chromeOptions.addArguments("incognito");
+//        chromeOptions.addArguments("--headless");
+        return chromeOptions;
     }
 }

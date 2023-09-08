@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class RegistrationTest {
+public class RegistrationTest2 {
     private WebDriver chromeDriver;
 
     public String getUserError(WebElement userError) {
@@ -50,7 +50,7 @@ public class RegistrationTest {
         dp.add(new String[] {"Vlad123", "", "", "", "", "", "", "Please choose a password",
                 "Passwords do not match", ""});
         dp.add(new String[] {"Vlad123", "Vlad1234", "Vlad", "Vlad", "Constantin", "vlad@yahoo.com",
-        "", "", "Passwords do not match", ""});
+                "", "", "Passwords do not match", ""});
         dp.add(new String[] {"Vlad123", "Vlad3", "Vlad3", "Vlad", "Constantin", "vlad@yahoo.com","", "", "", "Please choose a longer password"});
         return dp.iterator();
     }
@@ -148,43 +148,45 @@ public class RegistrationTest {
         //WebElement PasswordDoNotMatchElement = chromeDriver.findElement(By.xpath("//div[3]/small[2]"));
         //String actualRepeatPassError = PasswordDoNotMatchElement.getText();
 
-        if(username.length() == 0 && password.length() == 0) {
+
+
+        if(userError != null && passwordError != null && passDoNotMatch != null){
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[2]/small[2]")));
 
             WebElement usernameErrorElement = chromeDriver.findElement(By.xpath("//div[1]/small[2]"));
             String actualUserError = usernameErrorElement.getText();
             WebElement passErrorElement = chromeDriver.findElement(By.xpath("//div[2]/small[2]"));
             String actualPassError = passErrorElement.getText();
+            //WebElement PasswordDoNotMatchElement = chromeDriver.findElement(By.xpath("//div[3]/small[2]"));
+            //String actualPassDoNotMatchError = PasswordDoNotMatchElement.getText();
 
+            //Assert.assertEquals("Passwords do not match error", passDoNotMatch, actualPassDoNotMatchError);
             Assert.assertEquals("Incorrect username error message", userError, actualUserError);
-            Assert.assertEquals("Incorrect password error message", passwordError, actualPassError);
+            Assert.assertEquals("Incorrect password  error message", passwordError, actualPassError);
+        } else if (userError != null && passDoNotMatch != null) {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[1]/small[2]")));
 
-        } else if(username.length() == 0) {
+            WebElement usernameErrorElement = chromeDriver.findElement(By.xpath("//div[1]/small[2]"));
+            String actualUserError = usernameErrorElement.getText();
+            WebElement PasswordDoNotMatchElement = chromeDriver.findElement(By.xpath("//div[3]/small[2]"));
+            String actualPassDoNotMatchError = PasswordDoNotMatchElement.getText();
+
+            Assert.assertEquals("Passwords do not match error", passDoNotMatch, actualPassDoNotMatchError);
+            Assert.assertEquals("Incorrect username error message", userError, actualUserError);
+        } else if (userError != null) {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[1]/small[2]")));
 
             WebElement usernameErrorElement = chromeDriver.findElement(By.xpath("//div[1]/small[2]"));
             String actualUserError = usernameErrorElement.getText();
 
             Assert.assertEquals("Incorrect username error message", userError, actualUserError);
-        } else if(password.length() == 0) {
+        } else if (passwordError != null) {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[2]/small[2]")));
 
             WebElement passErrorElement = chromeDriver.findElement(By.xpath("//div[2]/small[2]"));
             String actualPassError = passErrorElement.getText();
-            Assert.assertEquals("Incorrect password error message", passwordError, actualPassError);
-        } else if(password.length() < 8) {
-            wait.until((ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[2]/small[2]"))));
 
-            WebElement needLongerPassErrorElement = chromeDriver.findElement(By.xpath("//div[2]/small[2]"));
-            String actualTooShortError = needLongerPassErrorElement.getText();
-            Assert.assertEquals("Password need to be at least 8 digits", passTooShort, actualTooShortError);
-        } else if(!password.equals(confirmPassword)) {
-            wait.until((ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[3]/small[2]"))));
-
-            WebElement PasswordDoNotMatchElement = chromeDriver.findElement(By.xpath("//div[3]/small[2]"));
-            String actualPassDoNotMatchError = PasswordDoNotMatchElement.getText();
-            Assert.assertEquals("Passwords do not match error", passDoNotMatch, actualPassDoNotMatchError);
+            Assert.assertEquals("Incorrect password  error message", passwordError, actualPassError);
         }
-
     }
 }

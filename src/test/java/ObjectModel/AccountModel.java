@@ -1,4 +1,4 @@
-package ObjectModels;
+package ObjectModel;
 
 import javax.xml.bind.annotation.XmlElement;
 

@@ -2,7 +2,7 @@ package Tests;
 
 import PageObjects.LoginPage;
 import PageObjects.RegistrationPage;
-import course.course06_07.MyCustomException;
+import ro.sit.course.course06_07.MyCustomException;
 import org.testng.annotations.Test;
 
 public class RegistrationTest extends BaseTest {

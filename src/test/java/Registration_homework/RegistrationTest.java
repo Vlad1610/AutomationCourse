@@ -6,13 +6,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Collection;
-import java.util.Objects;
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 public class RegistrationTest {
@@ -50,7 +52,7 @@ public class RegistrationTest {
         dp.add(new String[] {"Vlad123", "", "", "", "", "", "", "Please choose a password",
                 "Passwords do not match", ""});
         dp.add(new String[] {"Vlad123", "Vlad1234", "Vlad", "Vlad", "Constantin", "vlad@yahoo.com",
-        "", "", "Passwords do not match", ""});
+                "", "", "Passwords do not match", ""});
         dp.add(new String[] {"Vlad123", "Vlad3", "Vlad3", "Vlad", "Constantin", "vlad@yahoo.com","", "", "", "Please choose a longer password"});
         return dp.iterator();
     }
@@ -61,7 +63,7 @@ public class RegistrationTest {
                 "src/test/resources/drivers/chromedriver.exe");
         chromeDriver = new ChromeDriver();
         chromeDriver.manage().window().maximize();
-        chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         chromeDriver.get("http://86.121.249.151:4999/");
     }
     @AfterMethod
@@ -73,7 +75,7 @@ public class RegistrationTest {
     public void RegisterTest(String username, String password, String confirmPassword, String firstName, String lastName,
                              String email, String userError, String passwordError, String passDoNotMatch, String passTooShort) {
 
-        WebDriverWait wait = new WebDriverWait(chromeDriver,10);
+        WebDriverWait wait = new WebDriverWait(chromeDriver, Duration.ofSeconds(10));
 
         WebElement loginButtonElement = chromeDriver.findElement(By.tagName("h2"));
         loginButtonElement.click();

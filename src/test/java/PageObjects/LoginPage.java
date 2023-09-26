@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class LoginPage {
 
     WebDriver driver;
@@ -48,9 +50,10 @@ public class LoginPage {
     @FindBy(css = "a[href*='signup']")
     private WebElement signUpButtonElement;
 
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
 
@@ -76,7 +79,7 @@ public class LoginPage {
         }
     }
 
-    public String geUsernameErr() {
+    public String getUsernameErr() {
         try {
             return usernameErr.getText();
         } catch (NoSuchElementException ex) {

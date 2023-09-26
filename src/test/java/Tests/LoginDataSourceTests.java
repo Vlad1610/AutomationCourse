@@ -1,19 +1,25 @@
 package Tests;
 
-import ObjectModels.LoginModel;
+import ObjectModel.LoginModel;
 import PageObjects.LoginPage;
 import Utils.ExcelReader;
 import Utils.Tools;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
@@ -163,7 +169,7 @@ public class LoginDataSourceTests extends BaseTest {
         loginPage.login(username, password);
 
         System.out.println("Login Finished, verify error message");
-        Assert.assertEquals(loginPage.geUsernameErr(), usernameErr);
+        Assert.assertEquals(loginPage.getUsernameErr(), usernameErr);
         Assert.assertEquals(loginPage.getPassErr(), passErr);
     }
 

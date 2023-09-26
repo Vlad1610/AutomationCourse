@@ -1,17 +1,17 @@
-package ObjectModels;
+package ObjectModel;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class LoginModel {
-    private AccountModel account;
+    private ObjectModel.AccountModel account;
     private String userError;
     private String passwordError;
 
 
     public LoginModel(String username, String password, String userError, String passwordError) {
-        AccountModel accountM = new AccountModel();
+        ObjectModel.AccountModel accountM = new ObjectModel.AccountModel();
         accountM.setPassword(password);
         accountM.setUsername(username);
 
@@ -20,12 +20,12 @@ public class LoginModel {
         this.passwordError = passwordError;
     }
 
-    public AccountModel getAccount() {
+    public ObjectModel.AccountModel getAccount() {
         return account;
     }
 
     @XmlElement
-    public void setAccount(AccountModel account) {
+    public void setAccount(ObjectModel.AccountModel account) {
         this.account = account;
     }
 

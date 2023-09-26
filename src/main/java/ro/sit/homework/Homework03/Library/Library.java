@@ -1,8 +1,5 @@
 package ro.sit.homework.Homework03.Library;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-
-import java.sql.SQLOutput;
 
 public class Library {
     public static void main(String[] args) {

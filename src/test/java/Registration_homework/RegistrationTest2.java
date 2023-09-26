@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import org.testng.annotations.DataProvider;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collection;
@@ -61,7 +62,7 @@ public class RegistrationTest2 {
                 "src/test/resources/drivers/chromedriver.exe");
         chromeDriver = new ChromeDriver();
         chromeDriver.manage().window().maximize();
-        chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //chromeDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         chromeDriver.get("http://86.121.249.151:4999/");
     }
     @AfterMethod
@@ -73,7 +74,7 @@ public class RegistrationTest2 {
     public void RegisterTest(String username, String password, String confirmPassword, String firstName, String lastName,
                              String email, String userError, String passwordError, String passDoNotMatch, String passTooShort) {
 
-        WebDriverWait wait = new WebDriverWait(chromeDriver,10);
+        WebDriverWait wait = new WebDriverWait(chromeDriver, Duration.ofSeconds(10));
 
         WebElement loginButtonElement = chromeDriver.findElement(By.tagName("h2"));
         loginButtonElement.click();

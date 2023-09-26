@@ -1,6 +1,5 @@
 package OldTests;
 
-import javafx.scene.input.DataFormat;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
